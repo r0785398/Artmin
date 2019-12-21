@@ -32,16 +32,18 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "userID", nullable=false)
-    private int userID;
+    @Column(name = "userID", nullable=false, insertable=false, updatable = false)
+    private Long userID;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="userID")
     private User user;
     
-    @Column(name = "artistID", nullable=false)
-    private int artistID;
+    @Column(name = "artistID", nullable=false, insertable=false, updatable = false)
+    private Long artistID;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="artistID")
     private Artist artist;
     
     @NotEmpty
@@ -89,11 +91,11 @@ public class Client {
         this.id = id;
     }
 
-    public int getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 
@@ -105,11 +107,11 @@ public class Client {
         this.user = user;
     }
 
-    public int getArtistID() {
+    public Long getArtistID() {
         return artistID;
     }
 
-    public void setArtistID(int artistID) {
+    public void setArtistID(Long artistID) {
         this.artistID = artistID;
     }
 
@@ -208,6 +210,7 @@ public class Client {
     public void setEvents(Set<Event> events) {
         this.events = events;
     }
+
 
     
     

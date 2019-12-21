@@ -13,5 +13,8 @@
     </head>
     <body>
         <h1>Login venster.</h1>
+        
+        <p><a href="../artist"/>artist</p>
+        <p><a href="../client"/>client</p>
     </body>
 </html>

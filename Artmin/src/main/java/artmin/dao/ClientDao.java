@@ -8,7 +8,6 @@ package artmin.dao;
 import artmin.model.Client;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("clientDao")
 public class ClientDao extends AbstractDao<Long, Client>{
-    public Client findById(long id){
+    public Client findById(Long id){
         return getByKey(id);
     }
     
@@ -35,7 +34,8 @@ public class ClientDao extends AbstractDao<Long, Client>{
     
     @SuppressWarnings("unchecked")
     public List<Client> findAllClients() {
-        Criteria criteria = createEntityCriteria();
-        return (List<Client>) criteria.list();
+        
+        Criteria criteriaclient = createEntityCriteria();
+        return (List<Client>) criteriaclient.list();
     }
 }

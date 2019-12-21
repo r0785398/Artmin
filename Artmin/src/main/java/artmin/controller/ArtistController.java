@@ -57,7 +57,7 @@ public class ArtistController {
         
         //Redirect user to success page
         model.addAttribute("success", "Artist " + artist.getName() + " registered successfully");
-        return "success"; //view r-team
+        return "luckyartist"; //view r-team
     }
     
     @RequestMapping(value = {"/edit-{id}-artist"}, method = RequestMethod.GET)
@@ -74,13 +74,14 @@ public class ArtistController {
         artistService.updateArtist(artist);
         
         model.addAttribute("success", "Artist " + artist.getName() + " registered successfully");
-        return "success";
+        return "luckyartist";
     }
     
     @RequestMapping(value = {"/delete-{id}-artist"}, method=RequestMethod.GET)
-    public String deleteArtist(@PathVariable int id){
+    public String deleteArtist(@PathVariable int id, ModelMap model){
         artistService.deleteArtistById(id);
-        return "success";
+        model.addAttribute("success", "Artist verwijderd");
+        return "luckyartist";
     }
     
     @RequestMapping(value = {"", "/list"}, method = RequestMethod.GET)

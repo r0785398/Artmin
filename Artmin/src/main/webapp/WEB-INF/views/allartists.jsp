@@ -30,8 +30,8 @@
             <tr>
             <td>${artist.id}</td>
             <td>${artist.name}</td>
-            <td><a href="<c:url value='/demo/edit-${artist.id}-artist' />">edit</a></td>
-            <td><a href="<c:url value='/demo/delete-${artist.id}-artist' />">delete</a></td>
+            <td><a href="<c:url value='/artist/edit-${artist.id}-artist' />">edit</a></td>
+            <td><a href="<c:url value='/artist/delete-${artist.id}-artist' />">delete</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -7,10 +7,9 @@ package artmin.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -24,14 +23,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="UsersArtists", uniqueConstraints = { @UniqueConstraint( columnNames = { "userID", "artistID" } ) })
 public class UserArtist implements Serializable {
     
-    @Id
-    @Column(name = "userID", nullable=false)
+    
+    @EmbeddedId
+    private UserArtistFK userArtistID;
+    
+//    @Id
+    @Column(name = "userID", nullable=false, insertable = false, updatable = false)
     private Long userID;
     
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
-    @Column(name = "artistID", nullable=false)
+    @Column(name = "artistID", nullable=false, insertable = false, updatable = false)
     private Long artistID;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -81,6 +84,14 @@ public class UserArtist implements Serializable {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public UserArtistFK getUserArtistID() {
+        return userArtistID;
+    }
+
+    public void setUserArtistID(UserArtistFK userArtistID) {
+        this.userArtistID = userArtistID;
     }
 
     

@@ -12,7 +12,7 @@ import artmin.model.DemoUser;
 
 // implements UserDao
 
-@Repository("userDao")
+@Repository("demoUserDao")
 public class DemoUserDao extends AbstractDao<Integer, DemoUser>  {
     public DemoUser findById(int id) {
         return getByKey(id);

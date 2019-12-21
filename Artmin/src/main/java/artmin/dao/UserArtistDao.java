@@ -15,7 +15,7 @@ public class UserArtistDao extends AbstractDao<UserArtistFK,UserArtist>{
         UserArtistFK userArtistID = new UserArtistFK(userId, artistId);
         return (UserArtist)getByKey(userArtistID);
     }
-    
+ 
     public void saveUserArtist(UserArtist userArtist) {
         persist(userArtist);
     }

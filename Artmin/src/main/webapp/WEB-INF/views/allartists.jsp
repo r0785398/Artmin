@@ -17,7 +17,7 @@
  
 <body>
     
-    <h2>List of Employees</h2>  
+    <h2>List of Artists</h2>  
     <table>
         <tr>
             <td>ID</td>
@@ -36,6 +36,6 @@
         </c:forEach>
     </table>
     <br/>
-    <a href="<c:url value='/demo/new' />">Add New Artist</a>
+    <a href="<c:url value='/artist/new' />">Add New Artist</a>
 </body>
 </html>

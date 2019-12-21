@@ -22,7 +22,7 @@ public class ArtistDao extends AbstractDao<Long, Artist> {
     }
 
     public void deleteArtistById(Long id) {
-        Query query = getSession().createSQLQuery("delete from artist where id = :id");
+        Query query = getSession().createSQLQuery("delete from Artists where id = :id");
         query.setLong("id", id);
         query.executeUpdate();
     }

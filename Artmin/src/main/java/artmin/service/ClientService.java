@@ -25,7 +25,7 @@ public class ClientService {
     private ClientDao dao;
      
     // zoeken van client op basis van ID
-    public Client findById(int id) {
+    public Client findById(Long id) {
         return dao.findById(id);
     }
      
@@ -52,7 +52,7 @@ public class ClientService {
     }
  
     // verwijderen van gebruiker
-    public void deleteClientById(long id) {
+    public void deleteClientById(Long id) {
         dao.deleteClientById(id);
     }
      

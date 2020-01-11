@@ -29,9 +29,11 @@
             .item{
                 height: 150px;  
             }
-
-
-
+            
+            .logo{
+                width: 95%;
+                width: 95%\9;
+            }
         </style>
 
 
@@ -75,6 +77,10 @@
                     <div class="modal-content shadow">
 
                         <div onclick="location.href = '<c:url value='/events/opn-events-${artist.id}'/>';" style="cursor: pointer;">
+                            
+                            <div class="image-wrapper">
+                                <img src="${artist.logoUrl}" alt="logo" class="img-fluid logo"/>
+                            </div>
 
                             <div class="text-center">
                                 <h1 align="center"><c:out value="${artist.name}"/></h1>   
@@ -90,11 +96,11 @@
                                 <i class="material-icons small">edit</i>
                             </button>
 
-                                <!--
+                                
                             <button onclick="window.location.href = '<c:url value='/artists/delete-${artist.id}-artist'/>';" type="button" class="btn btn-danger">
                                 <i class="material-icons small">clear</i>
                             </button>  
-                                -->
+                                
 
 
 

@@ -21,7 +21,7 @@ public class ArtistService {
     @Autowired
     EventService eventService;
     
-        @Autowired
+    @Autowired
     EventLocationService eventLocationService;
 
     // zoeken van gebruiker op basis van ID

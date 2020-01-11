@@ -9,6 +9,7 @@ import artmin.model.Artist;
 import artmin.service.ArtistService;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -75,7 +76,11 @@ public class ArtistController {
 
     @RequestMapping(value = {"/delete-{id}-artist"}, method = RequestMethod.GET)
     public String deleteArtist(@PathVariable Long id, ModelMap model) {
-        artistService.deleteArtistById(id);
+        int p = JOptionPane.showConfirmDialog(null,"Are you really really really sure???","Delete artist",JOptionPane.YES_NO_OPTION);
+        
+        if (p==0) {
+            artistService.deleteArtistById(id);
+        }
         return this.listArtist(model); // Return overzicht events
     }
 

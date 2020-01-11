@@ -125,18 +125,21 @@ public class ClientController {
     // Delete 
     @RequestMapping(value = {"/delete-{clientID}-{eventID}"}, method = RequestMethod.GET)
     public String deleteItem(@PathVariable Long clientID, @PathVariable Long eventID, ModelMap model) {
+        int p = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete this event?","Delete event",JOptionPane.YES_NO_OPTION);
+        
+        if (p==0) {
+            // opzoeken of deze locatie bij een andere event wordt gebruikt
+            List<Event> eventsWithType = eventService.findEventsWithClient(clientID);
 
-        // opzoeken of deze locatie bij een andere event wordt gebruikt
-        List<Event> eventsWithType = eventService.findEventsWithClient(clientID);
+            if (eventsWithType.isEmpty()) {
+                // er zijn geen events van dit type, verwijder event type
 
-        if (eventsWithType.isEmpty()) {
-            // er zijn geen events van dit type, verwijder event type
+                clientService.deleteClientById(clientID);
 
-            clientService.deleteClientById(clientID);
+            } else {
 
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Client kan niet verwijderd worden, omdat er nog events zijn die dit type gebruiken.", "Alert", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Client kan niet verwijderd worden, omdat er nog events zijn die dit type gebruiken.", "Alert", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
         // terug naar overzicht
@@ -144,7 +147,7 @@ public class ClientController {
     }
 
     // view all
-    @RequestMapping(value = {"all-{eventID}",}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/all-{eventID}",}, method = RequestMethod.GET)
     public String list(@PathVariable Long eventID, ModelMap model) {
 
         // Get Event object
@@ -159,7 +162,7 @@ public class ClientController {
     }
 
     // Go back to event
-    @RequestMapping(value = {"addToEvent-{eventID}-{clientID}",}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/addToEvent-{eventID}-{clientID}",}, method = RequestMethod.GET)
     public String addLocationToEvent(@PathVariable Long eventID, @PathVariable Long clientID, ModelMap model) {
 
         // Haal alle events met filter: artist ID 

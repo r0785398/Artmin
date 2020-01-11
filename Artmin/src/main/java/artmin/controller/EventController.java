@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 import javax.validation.Valid;
 
@@ -197,7 +198,11 @@ public class EventController {
     //DELETE - EVENT
     @RequestMapping(value = {"/delete-{id}-event-{artistID}"}, method = RequestMethod.GET)
     public String deleteEvent(@PathVariable Long id, @PathVariable Long artistID, ModelMap model) {
-        eventService.deleteEventById(id);
+        int p = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete this event?","Delete event",JOptionPane.YES_NO_OPTION);
+        
+        if (p==0) {
+            eventService.deleteEventById(id);
+        }
 
         // Return terug naar het overzicht van events
         return this.ListUpcommingEvents(artistID, model);

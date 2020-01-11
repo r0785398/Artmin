@@ -11,6 +11,7 @@ import artmin.service.NoteService;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,8 +60,12 @@ public class ClientController {
 
     // NEW POST
     @RequestMapping(value = {"/new-{eventID}-{publicclient}"}, method = RequestMethod.POST)
-    public String saveItem(Client client, @PathVariable Long eventID, @PathVariable boolean publicclient, BindingResult result, ModelMap model) {
-
+    public String saveItem(@Valid Client client, @PathVariable Long eventID, @PathVariable boolean publicclient, BindingResult result, ModelMap model) {
+        
+        if (result.hasErrors()) {
+            return "clientnew";
+        }
+        
         // Check of alle velden zijn ingevuld en zet "ACK"
         client.isComplete();
 
@@ -106,8 +111,12 @@ public class ClientController {
 
     // UPDATE POST
     @RequestMapping(value = {"/edit-{clientID}-{eventID}"}, method = RequestMethod.POST)
-    public String updateItem(Client client, @PathVariable Long clientID, @PathVariable Long eventID, BindingResult result, ModelMap model) {
-
+    public String updateItem(@Valid Client client, @PathVariable Long clientID, @PathVariable Long eventID, BindingResult result, ModelMap model) {
+        
+        if (result.hasErrors()) {
+            return "clientnew";
+        }
+        
         // Check of alle velden zijn ingevuld en zet "ACK"
         client.isComplete();
 

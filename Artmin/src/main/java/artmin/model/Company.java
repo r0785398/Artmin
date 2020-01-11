@@ -5,6 +5,7 @@
  */
 package artmin.model;
 
+import static java.nio.file.Files.size;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 /**
  *
@@ -34,51 +38,69 @@ public class Company {
     private User user;
     
     @NotEmpty
+    @Size(min=2,max=50)
     @Column(name = "name", nullable = false)
     private String name;
     
+    @Size(min=2,max=30)
     @Column(name = "manager", nullable = true)
     private String manager;
     
+    @Size(min=2,max=100)
     @Column(name = "street", nullable = true)
     private String street;
     
+    @Size(max=25)
     @Column(name = "nrBus", nullable = true)
     private String nrBus;
     
+    @Size(min=4,max=12)
     @Column(name = "postCode", nullable = true)
     private String postCode;
     
+    @Size(min=2,max=50)
     @Column(name = "city", nullable = true)
     private String city;
     
+    @Size(min=2,max=50)
     @Column(name = "country", nullable = true)
     private String country;
     
+    @Size(min=2,max=25)
     @Column(name = "phone", nullable = true)
     private String phone;
     
+    @Size(min=2,max=15)
     @Column(name = "vat", nullable = true)
     private String vat;
     
+    @Email
+    @Size(min=2,max=100)
     @Column(name = "email", nullable = true)
     private String email;
     
+    @Size(max=255)
     @Column(name = "logoFilePath", nullable = true)
     private String logoFilePath;
     
+    @Size(min=2,max=100)
     @Column(name = "bankAccount", nullable = true)
     private String bankAccount;
     
+    @Size(max=4)
     @Column(name = "vatLegalLine", nullable = true)
     private boolean vatLegalLine;
     
+    @Size(min=2,max=50)
     @Column(name = "invoicePreFix", nullable = true)
     private String invoicePreFix;
     
+    @Size(max=20)
     @Column(name = "firstInvoiceNumber", nullable = true)
     private Long firstInvoiceNumber;
     
+    @URL
+    @Size(min=2,max=255)
     @Column(name = "termsAndConditionsUrl", nullable = true)
     private String termsAndConditionsUrl;
     

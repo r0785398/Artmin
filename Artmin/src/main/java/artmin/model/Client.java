@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -46,33 +48,43 @@ public class Client implements Serializable {
     private Artist artist;
 
     @NotEmpty
+    @Size(min=2,max=50)
     @Column(name = "name", nullable = false)
     private String name;
-
+    
+    @Size(min=2,max=50)
     @Column(name = "street", nullable = true)
     private String street;
-
+    
+    @Size(max=25)
     @Column(name = "nrBus", nullable = true)
     private String nrBus;
-
+    
+    @Size(min=4,max=12)
     @Column(name = "postCode", nullable = true)
     private String postCode;
-
+    
+    @Size(min=2,max=50)
     @Column(name = "city", nullable = true)
     private String city;
-
+    
+    @Size(min=2,max=50)
     @Column(name = "country", nullable = true)
     private String country;
-
+    
+    @Size(min=2,max=25)
     @Column(name = "phone", nullable = true)
     private String phone;
-
+    
+    @Email
+    @Size(min=2,max=100)
     @Column(name = "email", nullable = true)
     private String email;
-
+    
+    @Size(min=2,max=25)
     @Column(name = "vat", nullable = true)
     private String vat;
-
+    
     @Column(name = "ack", nullable = true)
     private boolean ack;
 

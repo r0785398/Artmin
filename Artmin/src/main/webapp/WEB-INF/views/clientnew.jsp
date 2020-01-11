@@ -103,6 +103,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Client Name</label>
                             <form:input path="name" id="name" class="form-control" placeholder="Client name"/>
+                            <form:errors path="name" cssClass="error"/>
                         </div>  
 
                         <hr>
@@ -113,36 +114,42 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Street</label>
                             <form:input path="street" id="street" class="form-control" placeholder="Street"/>
+                            <form:errors path="street" cssClass="error"/>
                         </div>  
 
                         <!--NR en BUS-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">NR / BUS</label>
                             <form:input path="nrBus" id="nrBus" class="form-control" placeholder="NR / BUS"/>
+                            <form:errors path="nrBus" cssClass="error"/>
                         </div>  
 
                         <!--POSTCODE-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">CODE</label>
                             <form:input path="postCode" id="postCode" class="form-control" placeholder="CODE"/>
+                            <form:errors path="postCode" cssClass="error"/>
                         </div>  
 
                         <!--GEMEENTE-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">CITY</label>
                             <form:input path="city" id="city" class="form-control" placeholder="City"/>
+                            <form:errors path="city" cssClass="error"/>
                         </div>  
 
                         <!--LAND-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">COUNTRY</label>
                             <form:input path="country" id="country" class="form-control" placeholder="country"/>
+                            <form:errors path="country" cssClass="error"/>
                         </div>  
 
                         <!--BTW NUMMER-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">VAT (optional)</label>
                             <form:input path="vat" id="vat" class="form-control" placeholder="VAT Number"/>
+                            <form:errors path="vat" cssClass="error"/>
                         </div> 
 
                         <hr>
@@ -151,6 +158,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">PHONE</label>
                             <form:input path="phone" id="phone" class="form-control" placeholder="phone"/>
+                            <form:errors path="phone" cssClass="error"/>
                         </div>  
 
                         <hr>
@@ -159,6 +167,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">E-Mail</label>
                             <form:input path="email" id="email" class="form-control" placeholder="email"/>
+                            <form:errors path="email" cssClass="error"/>
                         </div>  
 
                         <hr>
@@ -169,6 +178,7 @@
                         <c:if test="${!publicclient}">
                                         <div class="d-block">
                             <form:checkbox class="checkbox" path="ack" id="ack" />
+                            
                         </div>
                         </c:if> 
 

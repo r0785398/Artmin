@@ -25,8 +25,10 @@
             .item{
                 height: 150px;  
             }
-
-
+            
+            .error {
+                color: #ff0000;
+            }
 
         </style>
 
@@ -81,6 +83,9 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Artist Name</label>
                         <form:input path="name" id="name" class="form-control" placeholder="Artist Name"/>
+                        <form:errors path="name" cssClass="error"/>
+                        
+                        
                     </div>   
 
                     <!-- BESCHRIJVING -->
@@ -89,6 +94,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Description</label>
                         <form:input path="description" id="description" class="form-control" placeholder="Description"/>
+                        <form:errors path="description" cssClass="error"/>
                     </div>  
 
                     <hr>
@@ -99,6 +105,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Logo Url</label>
                         <form:input path="logoUrl" id="logoUrl" class="form-control" placeholder="Logo Url"/>
+                        <form:errors path="logoUrl" cssClass="error"/>
                     </div>  
 
                     <!-- SUBMIT BUTTON -->

@@ -9,6 +9,7 @@ import artmin.model.Artist;
 import artmin.service.ArtistService;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,8 +34,12 @@ public class ArtistController {
     }
 
     @RequestMapping(value = {"/new"}, method = RequestMethod.POST)
-    public String saveArtist(Artist artist, BindingResult result, ModelMap model) {
-
+    public String saveArtist(@Valid Artist artist, BindingResult result, ModelMap model) {
+        
+        
+        if (result.hasErrors()) {
+            return "artistnew";
+        }
         //First check if user already excists
         List<Artist> lstArtists = artistService.findAllArtists();
 
@@ -65,8 +70,11 @@ public class ArtistController {
     }
 
     @RequestMapping(value = {"/edit-{id}-artist"}, method = RequestMethod.POST)
-    public String updateArtist(Artist artist, BindingResult result, ModelMap model, @PathVariable int id) {
-
+    public String updateArtist(@Valid Artist artist, BindingResult result, ModelMap model, @PathVariable int id) {
+        
+        if (result.hasErrors()) {
+            return "artistnew";
+        }
         artistService.updateArtist(artist);
 
         model.addAttribute("success", "Artist " + artist.getName() + " registered successfully");

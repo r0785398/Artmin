@@ -15,7 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 /**
  *
@@ -31,12 +34,16 @@ public class Artist {
     private Long id;
     
     @NotEmpty
+    @Size(min=2, max=255)
     @Column(name = "name", nullable = false)
     private String name;
     
+    @Size(max = 255)
     @Column(name = "description", nullable = true)
     private String description;
     
+    @URL
+    @Size(max=255)
     @Column(name = "logoUrl", nullable = true)
     private String logoUrl;
     

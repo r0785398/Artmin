@@ -5,7 +5,7 @@
  */
 package artmin.dao;
 
-import artmin.model.User;
+import artmin.model.Company;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -15,28 +15,26 @@ import org.springframework.stereotype.Repository;
  *
  * @author Rei
  */
-
-@Repository("userDao")
-public class UserDao extends AbstractDao<Long, User>{
+@Repository("companyDao")
+public class CompanyDao extends AbstractDao<Long, Company>{
     
-    public User findById(long id){
+    public Company findById(long id){
         return getByKey(id);
     }
     
-    public void saveUser(User user) {
-        persist(user);
+    public void saveCompany(Company company) {
+        persist(company);
     }
 
-    public void deleteUserById(Long id) {
-        Query query = getSession().createSQLQuery("delete from user where id = :id");
+    public void deleteCompanyById(Long id) {
+        Query query = getSession().createSQLQuery("delete from company where id = :id");
         query.setLong("id", id);
         query.executeUpdate();
     }
     
     @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
+    public List<Company> findAllCompanies() {
         Criteria criteria = createEntityCriteria();
-        return (List<User>) criteria.list();
+        return (List<Company>) criteria.list();
     }
-    
 }

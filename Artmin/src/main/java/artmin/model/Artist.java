@@ -1,7 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package artmin.model;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,19 +13,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
- 
 import org.hibernate.validator.constraints.NotEmpty;
- 
+
+/**
+ *
+ * @author Rei
+ */
 @Entity
-@Table(name="users")
-public class User {
- 
-  //    Attributen
+@Table(name="Artists")
+public class Artist {
+//    Attributen
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,43 +34,33 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
     
-    @NotEmpty
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "description", nullable = true)
+    private String description;
     
-    @Size(min=6, max=50)
-    @Column(name = "password", nullable = false)
-    private String password;
-    
-    @Column(name = "lastLogin", nullable = true)
-    private LocalDateTime lastLogin;
-    
-    @Column(name = "registerValidateCode", nullable = true)
-    private String registerValidateCode;
+    @Column(name = "logoUrl", nullable = true)
+    private String logoUrl;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="userID")
-    private Set<UserArtist> users;
+    @JoinColumn(name="artistID")
+    private Set<UserArtist> artists;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="userID")
-    private Set<Company> companies;
+    @JoinColumn(name="artistID")
+    private Set<Event> events;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="userID")
+    @JoinColumn(name="artistID")
     private Set<EventLocation> eventLocations;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="userID")
+    @JoinColumn(name="artistID")
     private Set<Client> clients;
     
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="modUserID")
-    private Set<Note> notes;
-
-//    Properties
-
-    public Long getId() {
+    @JoinColumn(name="artistID")
+    private Set<EventType> eventTypes;
+    
+    public Long getId() {    
         return id;
     }
 
@@ -76,7 +68,7 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
+    public String getName() {    
         return name;
     }
 
@@ -84,52 +76,36 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
-    public LocalDateTime getLastLogin() {
-        return lastLogin;
+    public Set<UserArtist> getArtists() {
+        return artists;
     }
 
-    public void setLastLogin(LocalDateTime lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setArtists(Set<UserArtist> artists) {
+        this.artists = artists;
     }
 
-    public String getRegisterValidateCode() {
-        return registerValidateCode;
+    public Set<Event> getEvents() {
+        return events;
     }
 
-    public void setRegisterValidateCode(String registerValidateCode) {
-        this.registerValidateCode = registerValidateCode;
-    }
-
-    public Set<UserArtist> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserArtist> users) {
-        this.users = users;
-    }
-
-    public Set<Company> getCompanies() {
-        return companies;
-    }
-
-    public void setCompanies(Set<Company> companies) {
-        this.companies = companies;
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     public Set<EventLocation> getEventLocations() {
@@ -148,16 +124,14 @@ public class User {
         this.clients = clients;
     }
 
-    public Set<Note> getNotes() {
-        return notes;
+    public Set<EventType> getEventTypes() {
+        return eventTypes;
     }
 
-    public void setNotes(Set<Note> notes) {
-        this.notes = notes;
+//    Properties
+    public void setEventTypes(Set<EventType> eventTypes) {
+        this.eventTypes = eventTypes;
     }
-
-    
-    
 
 //    Methodes
     @Override
@@ -175,9 +149,9 @@ public class User {
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof User))
+        if (!(obj instanceof Artist))
             return false;
-        User other = (User) obj;
+        Artist other = (Artist) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -190,9 +164,9 @@ public class User {
             return false;
         return true;
     }
- 
+
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + "]";
+        return "Artist [id=" + id + ", name=" + name + "]";
     }
 }

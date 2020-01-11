@@ -5,38 +5,34 @@
  */
 package artmin.dao;
 
-import artmin.model.User;
+import artmin.model.Artist;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Rei
- */
+@Repository("artistDao")
+public class ArtistDao extends AbstractDao<Long, Artist> {
 
-@Repository("userDao")
-public class UserDao extends AbstractDao<Long, User>{
-    
-    public User findById(long id){
+    public Artist findById(Long id) {
         return getByKey(id);
     }
-    
-    public void saveUser(User user) {
-        persist(user);
+
+    public void saveArtist(Artist artist) {
+        persist(artist);
     }
 
-    public void deleteUserById(Long id) {
-        Query query = getSession().createSQLQuery("delete from user where id = :id");
+    public void deleteArtistById(Long id) {
+        Query query = getSession().createSQLQuery("delete from Artists where id = :id");
         query.setLong("id", id);
         query.executeUpdate();
     }
-    
+
     @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
+    public List<Artist> findAllArtists() {
         Criteria criteria = createEntityCriteria();
-        return (List<User>) criteria.list();
+
+        return (List<Artist>) criteria.list();
     }
-    
 }

@@ -5,38 +5,35 @@
  */
 package artmin.dao;
 
-import artmin.model.User;
+import artmin.model.TodoTemplate;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
-
 /**
  *
  * @author Rei
  */
-
-@Repository("userDao")
-public class UserDao extends AbstractDao<Long, User>{
+@Repository("todoTemplateDao")
+public class TodoTemplateDao extends AbstractDao<Long, TodoTemplate>{
     
-    public User findById(long id){
+    public TodoTemplate findById(long id){
         return getByKey(id);
     }
     
-    public void saveUser(User user) {
-        persist(user);
+    public void saveTodoTemplate(TodoTemplate todoTemplate) {
+        persist(todoTemplate);
     }
 
-    public void deleteUserById(Long id) {
-        Query query = getSession().createSQLQuery("delete from user where id = :id");
+    public void deleteTodoTemplateById(Long id) {
+        Query query = getSession().createSQLQuery("delete from todoTemplate where id = :id");
         query.setLong("id", id);
         query.executeUpdate();
     }
     
     @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
+    public List<TodoTemplate> findAllTodoTemplates() {
         Criteria criteria = createEntityCriteria();
-        return (List<User>) criteria.list();
+        return (List<TodoTemplate>) criteria.list();
     }
-    
 }

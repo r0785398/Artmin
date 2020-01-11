@@ -7,6 +7,7 @@
  
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Registration Form</title>
  
 <style>
@@ -58,6 +59,6 @@
     </form:form>
     <br/>
     <br/>
-    Go back to <a href="<c:url value='/list' />">List of All Users</a>
+    Go back to <a href="<c:url value='/demo/list' />">List of All Users</a>
 </body>
 </html>
